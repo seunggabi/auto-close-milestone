@@ -1,0 +1,19 @@
+name: auto-close-milestone
+
+on:
+  schedule:
+    - cron: 0 * * * *
+
+jobs:
+  auto-close-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: result
+        run: echo ${{ steps.run.outputs.milestones }}

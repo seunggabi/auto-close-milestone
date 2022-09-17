@@ -1,0 +1,19 @@
+name: Scheduled Milestones
+description: Automatically create GitHub milestones on a schedule.
+
+inputs:
+  token:
+    description: GitHub token
+    required: true
+
+outputs:
+  milestones:
+    description: result
+
+runs:
+  using: node12
+  main: dist/index.js
+
+branding:
+  icon: calendar
+  color: blue

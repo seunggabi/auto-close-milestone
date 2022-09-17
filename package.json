@@ -1,0 +1,33 @@
+{
+  "name": "auto-close-milestone",
+  "version": "0.1.0",
+  "description": "auto-close-milestone by `due_on`",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "ncc build index.js",
+    "lint": "eslint .",
+    "prettier": "prettier --list-different --write \"./**/**.js\"",
+    "watch": "ncc build --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seunggabi/auto-close-milestone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seunggabi/auto-close-milestone/issues"
+  },
+  "homepage": "https://github.com/seunggabi/auto-close-milestone#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "@readme/eslint-config": "^6.0.0",
+    "@vercel/ncc": "^0.29.2",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2"
+  },
+  "prettier": "@readme/eslint-config/prettier"
+}
