@@ -8,20 +8,16 @@ async function run() {
   const promises = [];
   promises.push(
     new Promise((resolve, reject) => {
-      // octokit.rest.issues
-        // .createMilestone({
-        //   ...github.context.repo,
-        //   title,
-        //   due_on: date,
-        // })
-        // .then(({data}) => {
-        //   resolve(data.html_url);
-        // })
-        // .catch(err => {
-        //   if (!err.message.match(/already_exists/)) {
-        //     reject(err);
-        //   }
-        // });
+      octokit.rest.issues
+        .listMilestones({
+          ...github.context.repo,
+        })
+        .then(({data}) => {
+          resolve(data.html_url);
+        })
+        .catch(err => {
+          reject(err);
+        });
     })
   );
 
