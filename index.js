@@ -1,5 +1,6 @@
 const github = require('@actions/github');
 const core = require('@actions/core');
+const moment = require('moment');
 
 async function run() {
   const token = core.getInput('token');
@@ -14,7 +15,22 @@ async function run() {
         })
         .then(({data}) => {
           data.forEach(i => {
-            resolve(i.html_url)
+            if (moment() < moment(i.due_on)) {
+              return;
+            }
+
+            const milestone_number = i.id;
+            const state = 'closed';
+
+            octokit.rest.issues
+              .updateMilestone({
+                ...github.context.repo,
+
+                milestone_number,
+                state
+              });
+
+            resolve(i);
           })
         })
         .catch(err => {
