@@ -13,7 +13,9 @@ async function run() {
           ...github.context.repo,
         })
         .then(({data}) => {
-          resolve(data.html_url);
+          data.forEach(i => {
+            resolve(i.html_url)
+          })
         })
         .catch(err => {
           reject(err);

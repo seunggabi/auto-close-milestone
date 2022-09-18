@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: run
-        uses: ./
+      - uses: ./
+        id: run
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
