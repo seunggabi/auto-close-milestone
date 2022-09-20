@@ -15,16 +15,12 @@ async function run() {
         })
         .then(({data}) => {
           data.forEach(i => {
-            // if (moment() < moment(i.due_on)) {
-            //   return;
-            // }
+            if (moment() < moment(i.due_on)) {
+              return;
+            }
 
             const milestone_number = i.number;
             const state = 'closed';
-
-            console.log(milestone_number)
-            console.log(state)
-
             octokit.rest.issues
               .updateMilestone({
                 ...github.context.repo,
@@ -32,6 +28,14 @@ async function run() {
                 milestone_number,
                 state
               });
+
+            const tag = i.title
+            octokit.rest.git
+              .createTag({
+                ...github.context.repo,
+
+                tag
+              })
 
             resolve({milestone: i, now: moment(), due: moment(i.due_on)});
           })
