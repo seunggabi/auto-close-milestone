@@ -15,12 +15,15 @@ async function run() {
         })
         .then(({list}) => {
           list.forEach(i => {
-            if (moment() < moment(i.due_on)) {
-              return;
-            }
+            // if (moment() < moment(i.due_on)) {
+            //   return;
+            // }
 
             const milestone_number = i.id;
             const state = 'closed';
+
+            console.log(milestone_number)
+            console.log(state)
 
             octokit.rest.issues
               .updateMilestone({
