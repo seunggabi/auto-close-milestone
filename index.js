@@ -14,27 +14,28 @@ async function run() {
           ...github.context.repo,
         })
         .then(list => {
-          list.forEach(i => {
-            // if (moment() < moment(i.due_on)) {
-            //   return;
-            // }
-
-            const milestone_number = i.id;
-            const state = 'closed';
-
-            console.log(milestone_number)
-            console.log(state)
-
-            octokit.rest.issues
-              .updateMilestone({
-                ...github.context.repo,
-
-                milestone_number,
-                state
-              });
-
-            resolve({milestone: i, now: moment(), due: moment(i.due_on)});
-          })
+          resolve(list)
+          // list.forEach(i => {
+          //   // if (moment() < moment(i.due_on)) {
+          //   //   return;
+          //   // }
+          //
+          //   const milestone_number = i.id;
+          //   const state = 'closed';
+          //
+          //   console.log(milestone_number)
+          //   console.log(state)
+          //
+          //   octokit.rest.issues
+          //     .updateMilestone({
+          //       ...github.context.repo,
+          //
+          //       milestone_number,
+          //       state
+          //     });
+          //
+          //   resolve({milestone: i, now: moment(), due: moment(i.due_on)});
+          // })
         })
         .catch(err => {
           reject(err);
