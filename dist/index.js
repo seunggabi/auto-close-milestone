@@ -15383,8 +15383,8 @@ async function run() {
         .listMilestones({
           ...github.context.repo,
         })
-        .then(({data}) => {
-          data.forEach(i => {
+        .then(({list}) => {
+          list.forEach(i => {
             if (moment() < moment(i.due_on)) {
               return;
             }
@@ -15400,7 +15400,7 @@ async function run() {
                 state
               });
 
-            resolve(i);
+            resolve({milestone: i, now: moment(), due: moment(i.due_on)});
           })
         })
         .catch(err => {
