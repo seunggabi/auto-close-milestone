@@ -15389,7 +15389,7 @@ async function run() {
             //   return;
             // }
 
-            const milestone_number = i.id;
+            const milestone_number = i.number;
             const state = 'closed';
 
             console.log(milestone_number)
