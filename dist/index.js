@@ -15399,12 +15399,12 @@ async function run() {
                 state
               });
 
-            const tag = i.title
-            octokit.rest.git
-              .createTag({
+            const tag_name = i.title
+            octokit.rest.repos
+              .createRelease({
                 ...github.context.repo,
 
-                tag
+                tag_name
               })
 
             resolve({milestone: i, now: moment(), due: moment(i.due_on)});
