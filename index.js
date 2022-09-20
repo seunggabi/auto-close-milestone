@@ -13,7 +13,7 @@ async function run() {
         .listMilestones({
           ...github.context.repo,
         })
-        .then(({list}) => {
+        .then(list => {
           list.forEach(i => {
             // if (moment() < moment(i.due_on)) {
             //   return;
