@@ -6,15 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  auto-close-milestone:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - uses: ./
         id: run
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: result
         run: echo ${{ steps.run.outputs.milestones }}
